@@ -8,9 +8,10 @@ generator client {
 // Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
 // enough when changing adapters.
 // See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+
 datasource db {
-  provider = "sqlite"
-  url      = "file:dev.sqlite"
+  provider = "postgresql"
+  url      = env("DB_URL")
 }
 
 model Session {
@@ -29,4 +30,20 @@ model Session {
   locale        String?
   collaborator  Boolean?  @default(false)
   emailVerified Boolean?  @default(false)
+}
+
+model Event {
+  id        Int      @id @default(autoincrement())
+  shop      String
+  name      String
+  data      Json?    @default("{}")
+  createdAt DateTime @default(now())
+}
+
+model Webhook {
+  id        Int      @id @default(autoincrement())
+  shop      String
+  topic     String
+  payload   Json?    @default("{}")
+  createdAt DateTime @default(now())
 }

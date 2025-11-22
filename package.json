@@ -19,6 +19,9 @@
     "vite": "vite",
     "typecheck": "react-router typegen && tsc --noEmit"
   },
+    "prisma": {
+    "seed": "node prisma/seeds/index.js"
+  },
   "type": "module",
   "engines": {
     "node": ">=20.19 <22 || >=22.12"
@@ -30,6 +33,7 @@
     "@react-router/node": "^7.9.3",
     "@react-router/serve": "^7.9.3",
     "@shopify/app-bridge-react": "^4.2.4",
+    "@shopify/polaris-viz": "^16.16.0",
     "@shopify/shopify-app-react-router": "^1.0.0",
     "@shopify/shopify-app-session-storage-prisma": "^7.0.0",
     "isbot": "^5.1.31",
@@ -37,6 +41,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.9.3",
+    "react-router-dom": "^7.9.6",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
