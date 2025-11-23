@@ -33,8 +33,11 @@ export default function App() {
         </s-button>
 
         <s-app-nav>
-          <s-link href="/app">Home</s-link>
-          <s-link href="/app/additional">Additional page</s-link>
+          <s-link href="/app">Dashboard</s-link>
+          <s-link href="/app/content">Content</s-link>
+          <s-link href="/app/settings">Settings</s-link>
+          <s-link href="/app/pricing">Pricing</s-link>
+          <s-link href="/app/faq">FAQ</s-link>
         </s-app-nav>
         <Outlet />
       </s-page>

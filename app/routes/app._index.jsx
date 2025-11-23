@@ -17,7 +17,7 @@ export const loader = async () => {
   const returningCustomerRates = await EventModel.list("", {
     name: "returningCustomerRates",
   });
-
+console.log("Customers Data: ", customers); // Log customers data
   return {
     sales,
     orders,

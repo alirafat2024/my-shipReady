@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router";
 import { normalize } from "../../utilities/dataNormalizer";
 import { SimpleBarChart } from "./main/simpleBarChart";
 

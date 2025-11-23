@@ -4,12 +4,14 @@ import { AppEmbedStatus } from "./appEmbedStatus";
 import {GetStarted} from "./getStarted"
 import {Specs}   from "./specs"
 import {Analytics} from "./analytics"
-import { CustomerOverTime } from "../chart/customerOverTime";
-
+import {Menu}   from "./menu"
+import {Footer} from "../footer"
 export const Dashboard = () => {
   return (
     <AppProvider>
-    <AppEmbedStatus />
+      <Menu/>
+     <s-stack direction="block" gap="base">
+       <AppEmbedStatus />
      <s-stack direction="inline" justifyContent="space-between" gap="small-300">
        <s-box maxInlineSize="650px" padding="none">
        <GetStarted />
@@ -19,7 +21,8 @@ export const Dashboard = () => {
      </s-box>
      </s-stack>
      <Analytics/>
-     <CustomerOverTime/>
+     <Footer/>
+     </s-stack>
     </AppProvider>
   );
 };

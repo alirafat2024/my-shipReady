@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router"
 import { SparkLineWidget } from "./main/sparkLineWidget";
 import { normalize } from "../../utilities/dataNormalizer";
 
