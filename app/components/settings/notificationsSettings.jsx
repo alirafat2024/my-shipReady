@@ -1,39 +1,37 @@
-import { BlockStack, Text, Button, Card, ButtonGroup } from "@shopify/polaris";
+
 import { FeedbackCard } from "./feedbackCard";
-import { OrderIcon, ProductIcon, RewardIcon } from "@shopify/polaris-icons";
 import { useState } from "react";
 
-export function NotificationsSettings({ selectedTab }) {
+export function NotificationsSettings() {
   const [notifications, setNotifications] = useState([
     {
       title: "New order",
       content: "You have a new order from John Doe",
-      icon: OrderIcon,
       actions: (
-        <ButtonGroup>
-          <Button>View order</Button>
-        </ButtonGroup>
+        <s-button-group>
+          <s-button>View order</s-button>
+        </s-button-group>
       ),
     },
     {
       title: "Low inventory",
       content: "You have 2 items with low inventory",
-      icon: ProductIcon,
+     
       actions: (
-        <ButtonGroup>
-          <Button>View products</Button>
-        </ButtonGroup>
+        <s-button-group>
+          <s-button>View products</s-button>
+        </s-button-group>
       ),
     },
     {
       title: "New review",
       content: "You have a new review from Jane Doe",
-      icon: RewardIcon,
+      
 
       actions: (
-        <ButtonGroup>
-          <Button>View review</Button>
-        </ButtonGroup>
+        <s-button-group>
+          <s-button>View review</s-button>
+        </s-button-group>
       ),
     },
   ]);
@@ -44,11 +42,11 @@ export function NotificationsSettings({ selectedTab }) {
     );
   };
 
-  return selectedTab !== "notifications" ? null : (
-    <BlockStack gap="400">
-      <Text as="h2" variant="headingMd">
+  return  (
+    <s-stack gap="400">
+      <s-heading >
         Notifications
-      </Text>
+      </s-heading>
 
       {notifications.length > 0 ? (
         notifications.map((notification, index) => (
@@ -59,18 +57,18 @@ export function NotificationsSettings({ selectedTab }) {
           />
         ))
       ) : (
-        <Card>
-          <BlockStack gap="400" inlineAlign="center">
-            <Text as="h2" variant="headingMd">
+        <s-section>
+          <s-stack gap="400" inlineAlign="center">
+            <s-heading as="h2" variant="headingMd">
               No notifications
-            </Text>
-            <Text as="p" variant="bodyMd" tone="subdued">
+            </s-heading>
+            <s-paragraph as="p" variant="bodyMd" tone="subdued">
               You have no notifications at the moment!
-            </Text>
-            <Button variant="primary">Refresh</Button>
-          </BlockStack>
-        </Card>
+            </s-paragraph>
+            <s-button variant="primary">Refresh</s-button>
+          </s-stack>
+        </s-section>
       )}
-    </BlockStack>
+    </s-stack>
   );
 }

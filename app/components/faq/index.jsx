@@ -1,4 +1,20 @@
+import { useState } from "react";
+
 export const FAQ = () => {
+  const [activeIndex, setActiveIndex] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+  };
+
+  const handleToggle = (index) => {
+    if (activeIndex.includes(index)) {
+      setActiveIndex(activeIndex.filter((i) => i !== index));
+    } else {
+      setActiveIndex([...activeIndex, index]);
+    }
+  };
   return (
     <s-page>
       <s-stack
@@ -19,7 +35,7 @@ export const FAQ = () => {
           gap="base"
         >
           <s-grid-item gridColumn="span 1">
-            <s-box >
+            <s-box>
               <s-stack gap="large-100">
                 <s-heading level="1" variant="headingLg">
                   Frequently asked questions
@@ -50,85 +66,271 @@ export const FAQ = () => {
 
           <s-grid-item gridColumn="span 2">
             <s-section>
-              <s-stack>
+              <s-stack gap="base">
                 <s-heading>Search FAQs</s-heading>
                 <s-search-field
                   label="Search"
                   labelAccessibilityVisibility="exclusive"
                   placeholder="Search items"
                 />
-                <s-stack direction="inline" justifyContent="center" gap="base">
+                <s-stack direction="inline" justifyContent="start" gap="base">
                   <s-box direction="inline">
-                    <s-clickable background="subdued" borderRadius="bas">
+                    <s-clickable
+                      padding="small-300"
+                      borderRadius="bas"
+                      onClick={() => handleCategoryChange("All")}
+                    >
                       All
                     </s-clickable>
                   </s-box>
                   <s-box direction="inline">
-                    <s-clickable background="subdued" borderRadius="base">
+                    <s-clickable
+                      padding="small-300"
+                      borderRadius="base"
+                      onClick={() => handleCategoryChange("Pricing")}
+                    >
                       Pricing
                     </s-clickable>
                   </s-box>
                   <s-box direction="inline">
-                    <s-clickable background="subdued" borderRadius="base">
+                    <s-clickable
+                      padding="small-300"
+                      borderRadius="base"
+                      onClick={() => handleCategoryChange("Features")}
+                    >
                       Features
                     </s-clickable>
                   </s-box>
                   <s-box direction="inline">
-                    <s-clickable background="subdued" borderRadius="base">
+                    <s-clickable
+                      padding="small-300"
+                      borderRadius="base"
+                      onClick={() => handleCategoryChange("Compatibility")}
+                    >
                       Compatibility
                     </s-clickable>
                   </s-box>
                   <s-box direction="inline">
-                    <s-clickable background="subdued" borderRadius="base">
+                    <s-clickable
+                      padding="small-300"
+                      borderRadius="base"
+                      onClick={() => handleCategoryChange("Support")}
+                    >
                       Support
                     </s-clickable>
                   </s-box>
                 </s-stack>
                 <s-stack>
-                  <s-clickable background="subdued"
-                  border="base"
-                  padding="small-300"
-                   borderRadius="base">
-                      How much does ShipReady cost?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300"
+                  <s-box>
+                    {activeCategory === "All" && (
+                      <>
+                        <s-clickable
+                          onClick={() => handleToggle(0)}
+                          padding="small-100"
+                          borderRadius="base"
+                        >
+                          <s-stack gap="small-300">
+                            <s-heading>How much does ShipReady cost?</s-heading>
+                            {activeIndex.includes(0) && (
+                              <s-paragraph>
+                                ShipReady offers flexible pricing plans starting
+                                at $29/month. We also offer a 14-day free trial
+                                for all new users.
+                              </s-paragraph>
+                            )}
+                          </s-stack>
+                        </s-clickable>
+                        <s-clickable
+                          onClick={() => handleToggle(1)}
+                          borderRadius="base"
+                          padding="small-100"
+                        >
+                          <s-stack gap="small-300">
+                            <s-heading>
+                              {" "}
+                              Can I use ShipReady with my existing shipping
+                              carrier?
+                            </s-heading>
+                            {activeIndex.includes(1) && (
+                              <s-paragraph>
+                                Yes, ShipReady integrates with most major
+                                shipping carriers, including USPS, FedEx, UPS,
+                                and DHL.
+                              </s-paragraph>
+                            )}
+                          </s-stack>
+                        </s-clickable>
+                        <s-clickable
+                          onClick={() => handleToggle(2)}
+                          borderRadius="base"
+                          padding="small-100"
+                        >
+                          <s-stack gap="small-300">
+                            <s-heading>
+                              {" "}
+                              How does ShipReady handle international shipping?
+                            </s-heading>
+                            {activeIndex.includes(2) && (
+                              <s-paragraph>
+                                ShipReady supports international shipping and
+                                automatically generates all required customs
+                                forms and documentation.
+                              </s-paragraph>
+                            )}
+                          </s-stack>
+                        </s-clickable>
+                        <s-clickable
+                          onClick={() => handleToggle(3)}
+                          borderRadius="base"
+                          padding="small-100"
+                        >
+                          <s-stack gap="small-300">
+                            <s-heading>
+                              {" "}
+                              Is ShipReady compatible with my Shopify theme?
+                            </s-heading>
+                            {activeIndex.includes(3) && (
+                              <s-paragraph>
+                                ShipReady is designed to work seamlessly with
+                                all Shopify themes. If you encounter any issues,
+                                our support team is here to help.
+                              </s-paragraph>
+                            )}
+                          </s-stack>
+                        </s-clickable>
+                        <s-clickable
+                          onClick={() => handleToggle(4)}
+                          borderRadius="base"
+                          padding="small-100"
+                        >
+                          <s-stack gap="small-300">
+                            <s-heading>
+                              How can I contact ShipReady support?
+                            </s-heading>
+                            {activeIndex.includes(4) && (
+                              <s-paragraph>
+                                You can reach our support team via email at
+                                support@shipready.com or through the in-app chat
+                                feature available 24/7.
+                              </s-paragraph>
+                            )}
+                          </s-stack>
+                        </s-clickable>
+                      </>
+                    )}
+                  </s-box>
+                  <s-box>
+                     {activeCategory === 'Pricing' && (
+                      <>
+                    <s-clickable
+                      onClick={() => handleToggle(5)}
+                      borderRadius="base"
+                      padding="small-100"
                     >
-                      Can I use ShipReady with my existing shipping carrier?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                      How does ShipReady handle international shipping?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                      Is ShipReady compatible with my Shopify theme?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                     How can I contact ShipReady support?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                      How much does ShipReady cost?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                      
-                     Can I use ShipReady with my existing shipping carrier?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                      How does ShipReady handle international shipping?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                     Is ShipReady compatible with my Shopify theme?
-                    </s-clickable><s-clickable background="subdued" borderRadius="base"
-                    border="base"
-                  padding="small-300">
-                      How can I contact ShipReady support?
+                      <s-stack gap="small-300">
+                        <s-heading>How much does ShipReady cost?</s-heading>
+                        {activeIndex.includes(5) && (
+                          <s-paragraph>
+                            ShipReady offers flexible pricing plans starting at
+                            $29/month. We also offer a 14-day free trial for all
+                            new users.
+                          </s-paragraph>
+                        )}
+                      </s-stack>
                     </s-clickable>
+                    </>
+                     )}
+                  </s-box>
+                  <s-box>
+                     {activeCategory === 'Features' && (
+                      <>
+                    <s-clickable
+                      onClick={() => handleToggle(6)}
+                      borderRadius="base"
+                      padding="small-100"
+                    >
+                      <s-stack gap="small-300">
+                        <s-heading>
+                          Can I use ShipReady with my existing shipping carrier?
+                        </s-heading>
+                        {activeIndex.includes(6) && (
+                          <s-paragraph>
+                            Yes, ShipReady integrates with most major shipping
+                            carriers, including USPS, FedEx, UPS, and DHL.
+                          </s-paragraph>
+                        )}
+                      </s-stack>
+                    </s-clickable>
+                    <s-clickable
+                      onClick={() => handleToggle(7)}
+                      borderRadius="base"
+                      padding="small-100"
+                    >
+                      <s-stack gap="small-300">
+                        <s-heading>
+                          How does ShipReady handle international shipping?
+                        </s-heading>
+                        {activeIndex.includes(7) && (
+                          <s-paragraph>
+                            ShipReady supports international shipping and
+                            automatically generates all required customs forms
+                            and documentation.
+                          </s-paragraph>
+                        )}
+                      </s-stack>
+                    </s-clickable>
+                    </>
+                     )}
+                  </s-box>
+                  <s-box>
+                     {activeCategory === 'Compatibility' && (
+                      <>
+                    <s-clickable
+                      onClick={() => handleToggle(8)}
+                      borderRadius="base"
+                      padding="small-100"
+                    >
+                      <s-stack gap="small-300">
+                        <s-heading>
+                          Is ShipReady compatible with my Shopify theme?
+                        </s-heading>
+                        {activeIndex.includes(8) && (
+                          <s-paragraph>
+                            ShipReady is designed to work seamlessly with all
+                            Shopify themes. If you encounter any issues, our
+                            support team is here to help.
+                          </s-paragraph>
+                        )}
+                      </s-stack>
+                    </s-clickable>
+                    </>
+                     )}
+                  </s-box>
+                  <s-box>
+                     {activeCategory === 'Support' && (
+                      <>
+                    <s-clickable
+                      onClick={() => handleToggle(9)}
+                      borderRadius="base"
+                      padding="small-100"
+                    >
+                      <s-stack gap="small-300">
+                        <s-heading>
+                          {" "}
+                          How can I contact ShipReady support?
+                        </s-heading>
+                        {activeIndex.includes(9) && (
+                          <s-paragraph>
+                            You can reach our support team via email at
+                            support@shipready.com or through the in-app chat
+                            feature available 24/7.
+                          </s-paragraph>
+                        )}
+                      </s-stack>
+                    </s-clickable>
+                    </>
+                     )}
+                  </s-box>
                 </s-stack>
               </s-stack>
             </s-section>

@@ -1,16 +1,7 @@
-import {
-  Card,
-  BlockStack,
-  Text,
-  List,
-  Link,
-  Button,
-  InlineStack,
-} from "@shopify/polaris";
-import { EyeCheckMarkIcon } from "@shopify/polaris-icons";
+
 import { useState } from "react";
 
-export function ChangeLogs({ selectedTab }) {
+export function ChangeLogs() {
   const [changeLogs, setChangeLogs] = useState([
     {
       title: "Change log",
@@ -71,51 +62,50 @@ export function ChangeLogs({ selectedTab }) {
 
   const handleDeleteChangeLog = (index) => {};
 
-  return selectedTab !== "change-log" ? null : (
-    <Card>
-      <BlockStack gap="200">
-        <Text as="h2" variant="headingMd">
+  return  (
+    <s-section>
+     <s-paragraph></s-paragraph>
+      <s-stack gap="200">
+        <s-heading level="1" variant="headingLg">
           Change logs
-        </Text>
-        <List>
+        </s-heading>
+        <s-unordered-list>
           {changeLogs.length > 0 ? (
             changeLogs.map((changeLog, index) => (
-              <List.Item key={index}>
-                <InlineStack
+              <s-list-item key={index}>
+                <s-stack direction="inline"
                   gap="200"
-                  align="space-between"
-                  inlineAlign="center"
-                  blockAlign="start"
+                
                 >
-                  <BlockStack gap="200">
-                    <Text as="p" variant="bodyMd" tone="subdued">
+                  <s-stack gap="200">
+                    <s-paragraph>
                       {changeLog.content}
-                    </Text>
-                    <Link url={changeLog.link}>{changeLog.title}</Link>
-                  </BlockStack>
-                  <Button
+                    </s-paragraph>
+                    <s-link url={changeLog.link}>{changeLog.title}</s-link>
+                  </s-stack>
+                  <s-button
                     icon={EyeCheckMarkIcon}
                     onClick={() => handleDeleteChangeLog(index)}
                   >
                     View
-                  </Button>
-                </InlineStack>
-              </List.Item>
+                  </s-button>
+                </s-stack >
+              </s-list-item>
             ))
           ) : (
-            <Card>
-              <BlockStack gap="400" inlineAlign="center">
-                <Text as="h2" variant="headingMd">
+            <s-section>
+              <s-stack gap="400" inlineAlign="center">
+                <s-heading level="1" variant="headingLg">
                   No change logs
-                </Text>
-                <Text as="p" variant="bodyMd" tone="subdued">
+                </s-heading>
+                <s-paragraph>
                   You have no change logs at the moment!
-                </Text>
-              </BlockStack>
-            </Card>
+                </s-paragraph>
+              </s-stack>
+            </s-section>
           )}
-        </List>
-      </BlockStack>
-    </Card>
+        </s-unordered-list>
+      </s-stack>
+    </s-section>
   );
 }

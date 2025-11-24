@@ -1,45 +1,35 @@
-import {
-  Card,
-  BlockStack,
-  Text,
-  Button,
-  InlineStack,
-  Icon,
-} from "@shopify/polaris";
-import { DeleteIcon } from "@shopify/polaris-icons";
 
-export const FeedbackCard = ({ title, content, actions, icon, onDelete }) => {
+
+export const FeedbackCard = () => {
   return (
-    <Card>
-      <BlockStack gap="400" align="start">
-        <BlockStack gap="200">
-          <InlineStack align="space-between">
-            <InlineStack gap="200">
-              {icon && <Icon source={icon} color="inkLighter" />}
-              {title && (
-                <Text as="h2" variant="headingMd">
-                  {title}
-                </Text>
-              )}
-            </InlineStack>
+    <s-section>
+      <s-stack gap="400" align="start">
+        <s-stack gap="200">
+          <s-stack direction="inline" align="space-between">
+            <s-stack direction="inline" gap="200">
+             
+             
+                <s-heading level="1" variant="headingLg">
+                  
+                </s-heading>
+              
+            </s-stack >
 
-            <Button
+            <s-button
               variant="plain"
               tone="critical"
-              onClick={onDelete}
-              icon={DeleteIcon}
               accessibilityLabel="Close"
             />
-          </InlineStack>
-          {content && (
-            <Text as="p" variant="bodyMd" tone="subdued">
-              {content}
-            </Text>
-          )}
-        </BlockStack>
+          </s-stack >
+          
+            <s-paragraph>
+              
+            </s-paragraph>
+         
+        </s-stack>
 
-        {actions && <BlockStack>{actions}</BlockStack>}
-      </BlockStack>
-    </Card>
+        <s-stack></s-stack>
+      </s-stack>
+    </s-section>
   );
 };

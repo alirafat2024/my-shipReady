@@ -6,18 +6,22 @@ export default function Contents() {
           <s-stack direction="inline" justifyContent="space-between">
             <s-box inlineSize="760px">
               <s-stack direction="inline" gap="base">
-                <s-heading>content</s-heading>
-                <s-icon></s-icon>
+                <s-stack direction="inline" gap="base" justifyContent="start" alignItems="center">
+                  <s-icon type="arrow-left" />
+                  <s-heading>content</s-heading>
+                </s-stack>
               </s-stack>
-              <s-paragraph>
-                Create and manage your contents here. You can add, edit, and
-                delete contents.
-              </s-paragraph>
             </s-box>
             <s-button icon="plus" variant="primary">
               New function
             </s-button>
           </s-stack>
+         <s-stack paddingInlineStart="large-300">
+           <s-paragraph>
+                Create and manage your contents here. You can add, edit, and
+                delete contents.
+              </s-paragraph>
+         </s-stack>
         </s-box>
 
         <s-section accessibilityLabel="Empty state section">
@@ -31,10 +35,10 @@ export default function Contents() {
             </s-box>
             <s-grid justifyItems="center" maxInlineSize="450px" gap="base">
               <s-stack alignItems="center">
-                <s-heading>Start creating puzzles</s-heading>
+                <s-heading level="1" variant="headingLg">Manage your contents</s-heading>
                 <s-paragraph>
-                  Create and manage your collection of puzzles for players to
-                  enjoy.
+                  Create and manage your contents here. You can add, edit, and
+                  delete contents.
                 </s-paragraph>
               </s-stack>
               <s-button-group>
@@ -45,9 +49,9 @@ export default function Contents() {
                   {" "}
                   Learn more{" "}
                 </s-button>
-                <s-button slot="primary-action" aria-label="Add a new puzzle">
+                <s-button slot="primary-action" variant="primary">
                   {" "}
-                  Create puzzle{" "}
+                  Add Content{" "}
                 </s-button>
               </s-button-group>
             </s-grid>
