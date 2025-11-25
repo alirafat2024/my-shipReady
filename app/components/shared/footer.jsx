@@ -1,7 +1,5 @@
-export const Footer =()=>(
-
-        
-    <s-stack direction="inline" gap="small-300" justifyContent="center">
+export const Footer =()=>( 
+    <s-stack direction="inline" gap="small-300" justifyContent="center" >
     <s-heading level="1" variant="headingLg">
       Build with ❤️{" "}
     </s-heading>

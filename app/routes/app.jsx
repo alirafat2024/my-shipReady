@@ -3,6 +3,7 @@ import { boundary } from "@shopify/shopify-app-react-router/server";
 import { AppProvider } from "@shopify/shopify-app-react-router/react";
 import { authenticate } from "../shopify.server";
 
+
 export const loader = async ({ request }) => {
   await authenticate.admin(request);
 
@@ -15,23 +16,9 @@ export default function App() {
 
   return (
     <AppProvider embedded apiKey={apiKey}>
-      <s-page heading="Page Title">
-        <s-button slot="primary-action" onclick="shopify.toast.show('Save')">
-          Save
-        </s-button>
-        <s-button
-          slot="secondary-actions"
-          onclick="shopify.toast.show('Close')"
-        >
-          Close
-        </s-button>
-        <s-button
-          slot="secondary-actions"
-          onclick="shopify.toast.show('Cancel')"
-        >
-          Cancel
-        </s-button>
-
+      <s-page heading="ShipReady-demo">
+        
+         
         <s-app-nav>
           <s-link href="/app">Dashboard</s-link>
           <s-link href="/app/content">Content</s-link>

@@ -1,25 +1,21 @@
+import { Footer } from "../shared/footer";
 
+export function GeneralSettings({ selectedTab }) {
+  return selectedTab !== "General" ? null : (
+    <s-page>
+      <s-stack gap="base">
+        <s-section>
+          <s-stack gap="base">
+            <s-heading level="1" variant="headingLg">
+              General Settings
+            </s-heading>
+            <s-text-field label="App Name" name="appName" />
+            <s-text-field label="App version" name="appVersion" />
+          </s-stack>
+        </s-section>
 
-
-export function GeneralSettings() {
- 
-  return (
-    <s-section>
-      <s-form >
-        <s-stack gap="200">
-          <s-heading level="1" variant="headingLg">
-            General Settings
-          </s-heading>
-              <s-text-field
-                label="App Name"
-                name="appName"
-              />
-              <s-text-field
-                label="App version"
-                name="appVersion"
-              />
-        </s-stack>
-      </s-form>
-    </s-section>
+        <Footer/>
+      </s-stack>
+    </s-page>
   );
 }

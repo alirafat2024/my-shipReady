@@ -1,27 +1,28 @@
+import SideNavigation from "../nav/sideNavigation";
+import TabNavigation from "../nav/tabNavigation";
+import { Footer } from "../shared/footer";
 export default function Contents() {
   return (
-    <s-page heading="Additional page">
+    <s-page>
       <s-stack direction="block" gap="base">
+           <TabNavigation/>
         <s-box border="base" padding="base" borderRadius="base">
           <s-stack direction="inline" justifyContent="space-between">
-            <s-box inlineSize="760px">
-              <s-stack direction="inline" gap="base">
-                <s-stack direction="inline" gap="base" justifyContent="start" alignItems="center">
-                  <s-icon type="arrow-left" />
-                  <s-heading>content</s-heading>
-                </s-stack>
-              </s-stack>
+            <s-box>
+              <SideNavigation pageTitle={"Content"} />
             </s-box>
-            <s-button icon="plus" variant="primary">
-              New function
-            </s-button>
+            <s-box>
+              <s-button icon="plus" variant="primary">
+                New function
+              </s-button>
+            </s-box>
           </s-stack>
-         <s-stack paddingInlineStart="large-300">
-           <s-paragraph>
-                Create and manage your contents here. You can add, edit, and
-                delete contents.
-              </s-paragraph>
-         </s-stack>
+          <s-stack paddingInlineStart="large-300">
+            <s-paragraph>
+              Create and manage your contents here. You can add, edit, and
+              delete contents.
+            </s-paragraph>
+          </s-stack>
         </s-box>
 
         <s-section accessibilityLabel="Empty state section">
@@ -35,7 +36,9 @@ export default function Contents() {
             </s-box>
             <s-grid justifyItems="center" maxInlineSize="450px" gap="base">
               <s-stack alignItems="center">
-                <s-heading level="1" variant="headingLg">Manage your contents</s-heading>
+                <s-heading level="1" variant="headingLg">
+                  Manage your contents
+                </s-heading>
                 <s-paragraph>
                   Create and manage your contents here. You can add, edit, and
                   delete contents.
@@ -46,8 +49,7 @@ export default function Contents() {
                   slot="secondary-actions"
                   aria-label="Learn more about creating puzzles"
                 >
-                  {" "}
-                  Learn more{" "}
+                 Learn more
                 </s-button>
                 <s-button slot="primary-action" variant="primary">
                   {" "}
@@ -57,7 +59,11 @@ export default function Contents() {
             </s-grid>
           </s-grid>
         </s-section>
+         <s-stack>
+        <Footer />
       </s-stack>
+      </s-stack>
+     
     </s-page>
   );
 }

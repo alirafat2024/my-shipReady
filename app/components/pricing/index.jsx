@@ -1,13 +1,15 @@
-
-
+import TabNavigation from "../nav/tabNavigation";
+import { Footer } from "../shared/footer";
+import SideNavigation from "../nav/sideNavigation";
 export default function Pricing() {
-
-
   return (
-     <s-page heading=" PowerX - Functions">
+    <s-page heading=" PowerX - Functions">
       <s-stack direction="block" padding="base" gap="base">
-        <s-stack paddingBlockEnd="large-500">
-          <s-heading>Pricing Page</s-heading>
+        <TabNavigation/>
+        <s-stack >
+          <s-box>
+            <SideNavigation pageTitle={"Pricing page"} />
+          </s-box>
         </s-stack>
         <s-section heading="lease select a plan that suits your business">
           <s-stack
@@ -34,9 +36,85 @@ export default function Pricing() {
             </s-box>
           </s-stack>
         </s-section>
-        <s-grid gridTemplateColumns="repeat(3,1fr)" gap="base">
+        <s-grid
+          gridTemplateColumns="repeat(3,1fr)"
+          gap="base"
+          alignItems="start"
+        >
           <s-section>
-            <s-heading>Starter</s-heading>
+            <s-heading>Free</s-heading>
+            <s-paragraph>
+              <s-text type="strong">$39</s-text>/ month
+            </s-paragraph>
+            <s-paragraph>For growing business</s-paragraph>
+            <s-divider></s-divider>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Discount functions</s-text>
+            </s-stack>
+
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Payment functions</s-text>
+            </s-stack>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Shipping functions</s-text>
+            </s-stack>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Validations functions</s-text>
+            </s-stack>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>10 campaigns per function</s-text>
+            </s-stack>
+            <s-stack paddingBlockStart="base" paddingInline="large-500">
+              <s-button variant="primary">start 3-days trila</s-button>
+            </s-stack>
+          </s-section>
+          <s-section>
+            <s-heading>Pro</s-heading>
+            <s-paragraph>
+              <s-text type="strong">$99</s-text>/ month
+            </s-paragraph>
+            <s-paragraph>Shopify Plus</s-paragraph>
+            <s-divider></s-divider>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Discount functions</s-text>
+            </s-stack>
+
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Payment functions</s-text>
+            </s-stack>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Shipping functions</s-text>
+            </s-stack>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Validations functions</s-text>
+            </s-stack>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Unlimited campaigns & rules</s-text>
+            </s-stack>
+            <s-stack direction="inline" gap="base">
+              <s-icon type="check-circle" tone="success" />
+              <s-text>Priority email support</s-text>
+            </s-stack>
+            <s-stack
+              direction="block"
+              paddingBlockStart="base"
+              paddingInline="large-500"
+            >
+              <s-button variant="primary">start 3-days trila</s-button>
+            </s-stack>
+          </s-section>
+          <s-section>
+            <s-heading>Premium</s-heading>
             <s-paragraph>
               <s-text type="strong">Free</s-text>/ month
             </s-paragraph>
@@ -75,99 +153,13 @@ export default function Pricing() {
               <s-icon type="check-circle" tone="success" />
               <s-text>Basic support</s-text>
             </s-stack>
-            <s-stack paddingBlockStart="base" paddingInline="large-100">
-              <s-button variant="primary">
-                Upgrade to unclock all feature
-              </s-button>
-            </s-stack>
-          </s-section>
-          <s-section>
-            <s-heading>Professional</s-heading>
-            <s-paragraph>
-              <s-text type="strong">$39</s-text>/ month
-            </s-paragraph>
-            <s-paragraph>For growing business</s-paragraph>
-            <s-divider></s-divider>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Discount functions</s-text>
-            </s-stack>
-
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Payment functions</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Shipping functions</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Validations functions</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>10 campaigns per function</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>10 rules per function</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Fast email support</s-text>
-            </s-stack>
             <s-stack paddingBlockStart="base" paddingInline="large-500">
               <s-button variant="primary">start 3-days trila</s-button>
             </s-stack>
           </s-section>
-          <s-section>
-            <s-heading>Premium</s-heading>
-            <s-paragraph>
-              <s-text type="strong">$99</s-text>/ month
-            </s-paragraph>
-            <s-paragraph>Shopify Plus</s-paragraph>
-            <s-divider></s-divider>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Discount functions</s-text>
-            </s-stack>
-
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Payment functions</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Shipping functions</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Validations functions</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Unlimited campaigns & rules</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Priority email support</s-text>
-            </s-stack>
-            <s-stack direction="inline" gap="base">
-              <s-icon type="check-circle" tone="success" />
-              <s-text>Scripts to Functions migration </s-text>
-            </s-stack>
-            <s-stack direction="block" paddingBlockStart="base" paddingInline="large-500">
-              <s-button variant="primary">start 3-days trila</s-button>
-            </s-stack>
-
-
-           
-          </s-section>
         </s-grid>
-        
+        <Footer/>
       </s-stack>
     </s-page>
-  
   );
 }

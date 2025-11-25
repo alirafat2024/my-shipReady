@@ -4,13 +4,14 @@ import { AppEmbedStatus } from "./appEmbedStatus";
 import {GetStarted} from "./getStarted"
 import {Specs}   from "./specs"
 import {Analytics} from "./analytics"
-import {Menu}   from "./menu"
-import {Footer} from "../footer"
+import TabNavigation   from "../nav/tabNavigation"
+import {Footer} from "../shared/footer"
 export const Dashboard = () => {
   return (
     <AppProvider>
-      <Menu/>
+      
      <s-stack direction="block" gap="base">
+      <TabNavigation/>
        <AppEmbedStatus />
      <s-stack direction="inline" justifyContent="space-between" gap="small-300">
        <s-box maxInlineSize="650px" padding="none">
