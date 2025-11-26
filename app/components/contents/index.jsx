@@ -1,12 +1,12 @@
 import SideNavigation from "../nav/sideNavigation";
-import TabNavigation from "../nav/tabNavigation";
+
 import { Footer } from "../shared/footer";
 export default function Contents() {
   return (
     <s-page>
       <s-stack direction="block" gap="base">
-           <TabNavigation/>
-        <s-box border="base" padding="base" borderRadius="base">
+         
+        <s-stack>
           <s-stack direction="inline" justifyContent="space-between">
             <s-box>
               <SideNavigation pageTitle={"Content"} />
@@ -17,13 +17,13 @@ export default function Contents() {
               </s-button>
             </s-box>
           </s-stack>
-          <s-stack paddingInlineStart="large-300">
+          <s-stack paddingInlineStart="large-400">
             <s-paragraph>
               Create and manage your contents here. You can add, edit, and
               delete contents.
             </s-paragraph>
           </s-stack>
-        </s-box>
+        </s-stack>
 
         <s-section accessibilityLabel="Empty state section">
           <s-grid gap="base" justifyItems="center" paddingBlock="large-400">
@@ -35,11 +35,11 @@ export default function Contents() {
               />
             </s-box>
             <s-grid justifyItems="center" maxInlineSize="450px" gap="base">
-              <s-stack alignItems="center">
+              <s-stack alignItems="center" justifyContent="center">
                 <s-heading level="1" variant="headingLg">
                   Manage your contents
                 </s-heading>
-                <s-paragraph>
+                <s-paragraph justifyContent="center">
                   Create and manage your contents here. You can add, edit, and
                   delete contents.
                 </s-paragraph>

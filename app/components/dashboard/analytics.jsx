@@ -16,7 +16,7 @@ export const Analytics = () => (
         gridTemplateColumns="@container (inline-size > 500px) 1fr 1fr 1fr 1fr , 1fr"
         gap="small"
         justifyContent="center"
-      >
+        >
         <s-grid-item>
           <s-section>
             <TotalRevenue />

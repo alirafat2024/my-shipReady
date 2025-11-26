@@ -1,6 +1,6 @@
 export const GetStarted = () => (
   <s-section>
-    <s-box>
+    
       <s-stack gap="small-100">
         <s-stack gap="small-200">
           <s-heading  >
@@ -23,7 +23,7 @@ export const GetStarted = () => (
           </s-paragraph>
         </s-stack>
       </s-stack>
-    </s-box>
+  
   </s-section>
 );
 

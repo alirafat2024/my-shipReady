@@ -5,6 +5,7 @@ import { NotificationsSettings } from "./notificationsSettings";
 import { ChangeLogs } from "./changeLogs";
 import { useState } from "react";
 import { SideTabs } from "./sideTabs";
+import { Footer } from "../shared/footer";
 
 export default function Settings() {
   const [selected, setSelected] = useState("General");
@@ -24,6 +25,7 @@ export default function Settings() {
             >
               <s-section>
                 <SideTabs setSelectedTab={setSelected} selectedTab={selected} />
+                
               </s-section>
 
               <s-box>
@@ -31,10 +33,14 @@ export default function Settings() {
                 <FeaturesSettings selectedTab={selected} />
                 <NotificationsSettings selectedTab={selected} />
                 <ChangeLogs selectedTab={selected} />
+                 
               </s-box>
+             
             </s-grid>
+            
           </s-query-container>
         </s-box>
+        
       </s-stack>
     </s-page>
   );

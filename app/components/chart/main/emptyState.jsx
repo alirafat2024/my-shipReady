@@ -1,21 +1,15 @@
 
 
-export default function EmptyState({
-  text = "There was no data found.",
-  minHeight = 300,
-}) {
+export default function EmptyState(){
+
+
   return (
     <s-box
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: minHeight + "px",
-        width: "100%",
-      }}
+     justifyContent="center"
+        alignItems= "center"
     >
       <s-paragraph  tone="subdued"  alignment="center">
-        {text}
+        
       </s-paragraph>
     </s-box>
   );

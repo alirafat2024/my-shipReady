@@ -19,11 +19,11 @@ export const FAQ = () => {
   };
   return (
     <s-page>
-      <s-stack gap="small-100">
-        <TabNavigation />
-        <s-box padding="none">
-          <SideNavigation pageTitle={"FAQ"} />
+      <s-stack gap="base">
+        <s-box >
+          <SideNavigation pageTitle={"Pricing page"} />
         </s-box>
+        
         <s-query-container>
           <s-grid
             gridTemplateColumns="@container (inline-size > 500px)1fr 1fr 1fr , 1fr"
@@ -61,8 +61,8 @@ export const FAQ = () => {
 
             <s-grid-item gridColumn="span 2">
               <s-section>
-                <s-stack gap="base">
-                  <s-heading>Search FAQs</s-heading>
+                <s-stack gap="small-300">
+                  <s-text>Search FAQs</s-text>
                   <s-search-field
                     label="Search"
                     labelAccessibilityVisibility="exclusive"
@@ -74,6 +74,7 @@ export const FAQ = () => {
                         padding="small-300"
                         borderRadius="bas"
                         onClick={() => handleCategoryChange("All")}
+                        background={activeCategory === "All" ? "subdued" : "transparent"}
                       >
                         All
                       </s-clickable>
@@ -83,6 +84,7 @@ export const FAQ = () => {
                         padding="small-300"
                         borderRadius="base"
                         onClick={() => handleCategoryChange("Pricing")}
+                        background={activeCategory === "Pricing" ? "subdued" : "transparent"}
                       >
                         Pricing
                       </s-clickable>
@@ -92,6 +94,7 @@ export const FAQ = () => {
                         padding="small-300"
                         borderRadius="base"
                         onClick={() => handleCategoryChange("Features")}
+                        background={activeCategory === "Features" ? "subdued" : "transparent"}
                       >
                         Features
                       </s-clickable>
@@ -101,6 +104,7 @@ export const FAQ = () => {
                         padding="small-300"
                         borderRadius="base"
                         onClick={() => handleCategoryChange("Compatibility")}
+                        background={activeCategory === "Compatibility" ? "subdued" : "transparent"}
                       >
                         Compatibility
                       </s-clickable>
@@ -110,12 +114,13 @@ export const FAQ = () => {
                         padding="small-300"
                         borderRadius="base"
                         onClick={() => handleCategoryChange("Support")}
+                        background={activeCategory === "Support" ? "subdued" : "transparent"}
                       >
                         Support
                       </s-clickable>
                     </s-box>
                   </s-stack>
-                  <s-stack>
+                  <s-stack  >
                     <s-box>
                       {activeCategory === "All" && (
                         <>
@@ -137,11 +142,12 @@ export const FAQ = () => {
                               )}
                             </s-stack>
                           </s-clickable>
+                          <s-divider/>
                           <s-clickable
                             onClick={() => handleToggle(1)}
                             borderRadius="base"
                             padding="small-100"
-                          >
+                           >
                             <s-stack gap="small-300">
                               <s-heading>
                                 {" "}
@@ -157,11 +163,12 @@ export const FAQ = () => {
                               )}
                             </s-stack>
                           </s-clickable>
+                          <s-divider/>
                           <s-clickable
                             onClick={() => handleToggle(2)}
                             borderRadius="base"
                             padding="small-100"
-                          >
+                           >
                             <s-stack gap="small-300">
                               <s-heading>
                                 {" "}
@@ -177,11 +184,12 @@ export const FAQ = () => {
                               )}
                             </s-stack>
                           </s-clickable>
+                          <s-divider/>
                           <s-clickable
                             onClick={() => handleToggle(3)}
                             borderRadius="base"
                             padding="small-100"
-                          >
+                           >
                             <s-stack gap="small-300">
                               <s-heading>
                                 {" "}
@@ -196,6 +204,7 @@ export const FAQ = () => {
                               )}
                             </s-stack>
                           </s-clickable>
+                          <s-divider/>
                           <s-clickable
                             onClick={() => handleToggle(4)}
                             borderRadius="base"
@@ -217,7 +226,7 @@ export const FAQ = () => {
                         </>
                       )}
                     </s-box>
-                    <s-box>
+                    <s-box >
                       {activeCategory === "Pricing" && (
                         <>
                           <s-clickable
@@ -248,7 +257,7 @@ export const FAQ = () => {
                             onClick={() => handleToggle(6)}
                             borderRadius="base"
                             padding="small-100"
-                          >
+                           >
                             <s-stack gap="small-300">
                               <s-heading>
                                 Can I use ShipReady with my existing shipping
@@ -263,6 +272,7 @@ export const FAQ = () => {
                               )}
                             </s-stack>
                           </s-clickable>
+                          <s-divider/>
                           <s-clickable
                             onClick={() => handleToggle(7)}
                             borderRadius="base"

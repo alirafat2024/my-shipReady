@@ -66,7 +66,7 @@ export function ChangeLogs({ selectedTab }) {
       <s-heading level="1" variant="headingLg">
         Change logs
       </s-heading>
-      <s-stack gap="base">
+      <s-stack gap="small-300">
         <s-unordered-list>
           {changeLogs.length > 0 ? (
             changeLogs.map((changeLog, index) => (

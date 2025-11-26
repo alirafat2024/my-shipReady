@@ -9,18 +9,16 @@ export const WidgetHeading = ({
   isDark = false,
 }) =>
   title && (
-    <s-box paddingInline="400">
-      <s-stack gap="base">
+    <s-box  >
+      <s-stack gap="small-300" >
         <s-heading
         level="1"
           variant="headingLg"
-          
-          tone={isDark ? "text-inverse" : "base"}
         >
           {title}
         </s-heading>
         {subTitle && (
-          <s-stack gap="base">
+          <s-stack gap="small-300">
             <s-heading variant="headingLg" tone={isDark ? "text-inverse" : "base"}>
               {subTitle}
             </s-heading>
@@ -33,7 +31,7 @@ export const WidgetHeading = ({
                 width: "62px",
                 gap: "small-300"
                 }}>
-                <s-stack direction="inline"  gap="100">
+                <s-stack direction="inline"  gap="small-300">
                   <s-icon
                     tone={
                       fluctuation > 0

@@ -1,5 +1,6 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-
+import SideNavigation from "./components/nav/sideNavigation";
+import TabNavigation from "./components/nav/tabNavigation";
 export default function App() {
   return (
     <html lang="en">
@@ -13,8 +14,10 @@ export default function App() {
         />
         <Meta />
         <Links />
+        <style>{`*{papping:0; margin:0}`}</style>
       </head>
       <body>
+       <TabNavigation/>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

@@ -18,9 +18,12 @@ export const SideTabs = ({ setSelectedTab, selectedTab }) => {
           <h2>{section.title}</h2>
           {section.items.map((item, itemIndex) => (
             <s-clickable
-              padding="base"
+              padding="small-300"
               key={itemIndex}
               onClick={() => setSelectedTab(item.content)}
+              background={
+                selectedTab === item.content ? "subdued" : "transparent"
+              }
             >
               <s-stack justifyContent="space-between" direction="inline">
                 <s-stack direction="inline" gap="small-300" alignItems="center">
@@ -32,12 +35,7 @@ export const SideTabs = ({ setSelectedTab, selectedTab }) => {
                   )}
                 </s-stack>
                 <s-box>
-                    {selectedTab === item.content ? (
-                    <s-icon type="check"/>
-                  ) : (
-                    ""
-                  )}
-                 
+                  {selectedTab === item.content ? <s-icon type="check" /> : ""}
                 </s-box>
               </s-stack>
             </s-clickable>

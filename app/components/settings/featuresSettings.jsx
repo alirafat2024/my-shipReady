@@ -40,7 +40,24 @@ export function FeaturesSettings({ selectedTab }) {
                 </s-stack>
 
                 <s-box>
-                  <s-button variant="primary">New Feature</s-button>
+                  <s-button variant="primary" commandFor="modal">
+                    New Feature
+                    <s-modal id="modal" heading="Add Features">
+                      <s-stack gap="base">
+                        <s-section>
+                          <s-stack gap="base">
+                            <s-text-field label="Feature Name" name="appName" />
+                            <s-text-field
+                              label="Feature Details"
+                              name="appVersion"
+                            />
+                          </s-stack>
+                        </s-section>
+
+                       
+                      </s-stack>
+                    </s-modal>
+                  </s-button>
                 </s-box>
               </s-grid>
             </s-grid>

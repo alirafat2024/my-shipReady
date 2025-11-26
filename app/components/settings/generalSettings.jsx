@@ -3,7 +3,7 @@ import { Footer } from "../shared/footer";
 export function GeneralSettings({ selectedTab }) {
   return selectedTab !== "General" ? null : (
     <s-page>
-      <s-stack gap="base">
+      <s-stack gap="large-500" >
         <s-section>
           <s-stack gap="base">
             <s-heading level="1" variant="headingLg">

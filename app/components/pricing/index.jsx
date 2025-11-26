@@ -5,8 +5,8 @@ export default function Pricing() {
   return (
     <s-page heading=" PowerX - Functions">
       <s-stack direction="block" padding="base" gap="base">
-        <TabNavigation/>
-        <s-stack >
+        <TabNavigation />
+        <s-stack>
           <s-box>
             <SideNavigation pageTitle={"Pricing page"} />
           </s-box>
@@ -42,7 +42,10 @@ export default function Pricing() {
           alignItems="start"
         >
           <s-section>
-            <s-heading>Free</s-heading>
+            <s-stack justifyContent="space-between" direction="inline">
+              <s-heading>Free</s-heading>
+              <s-badge tone="info">current plan</s-badge>
+            </s-stack>
             <s-paragraph>
               <s-text type="strong">$39</s-text>/ month
             </s-paragraph>
@@ -158,7 +161,7 @@ export default function Pricing() {
             </s-stack>
           </s-section>
         </s-grid>
-        <Footer/>
+        <Footer />
       </s-stack>
     </s-page>
   );
