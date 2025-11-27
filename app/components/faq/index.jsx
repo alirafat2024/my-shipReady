@@ -21,7 +21,7 @@ export const FAQ = () => {
     <s-page>
       <s-stack gap="base">
         <s-box >
-          <SideNavigation pageTitle={"Pricing page"} />
+          <SideNavigation pageTitle={"FAQ page"} />
         </s-box>
         
         <s-query-container>
