@@ -1,11 +1,11 @@
-import TabNavigation from "../nav/tabNavigation";
+
 import { Footer } from "../shared/footer";
 import SideNavigation from "../nav/sideNavigation";
 export default function Pricing() {
   return (
     <s-page heading=" PowerX - Functions">
       <s-stack direction="block" padding="base" gap="base">
-        <TabNavigation />
+        
         <s-stack>
           <s-box>
             <SideNavigation pageTitle={"Pricing page"} />

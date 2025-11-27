@@ -1,19 +1,24 @@
 import SideNavigation from "../nav/sideNavigation";
-
 import { Footer } from "../shared/footer";
+import { useNavigate } from "react-router";
 export default function Contents() {
+ const navigate=useNavigate();
   return (
     <s-page>
       <s-stack direction="block" gap="base">
-         
         <s-stack>
           <s-stack direction="inline" justifyContent="space-between">
             <s-box>
               <SideNavigation pageTitle={"Content"} />
             </s-box>
             <s-box>
-              <s-button icon="plus" variant="primary">
+              <s-button icon="plus" variant="primary"
+              onClick={()=>{
+                navigate("/app/contentForm")
+              }}
+              >
                 New function
+               
               </s-button>
             </s-box>
           </s-stack>
@@ -49,7 +54,7 @@ export default function Contents() {
                   slot="secondary-actions"
                   aria-label="Learn more about creating puzzles"
                 >
-                 Learn more
+                  Learn more
                 </s-button>
                 <s-button slot="primary-action" variant="primary">
                   {" "}
@@ -59,11 +64,10 @@ export default function Contents() {
             </s-grid>
           </s-grid>
         </s-section>
-         <s-stack>
-        <Footer />
+        <s-stack>
+          <Footer />
+        </s-stack>
       </s-stack>
-      </s-stack>
-     
     </s-page>
   );
 }

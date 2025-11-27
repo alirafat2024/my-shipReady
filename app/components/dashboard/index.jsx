@@ -3,13 +3,13 @@ import { AppEmbedStatus } from "./appEmbedStatus";
 import { GetStarted } from "./getStarted";
 import { Specs } from "./specs";
 import { Analytics } from "./analytics";
-import TabNavigation from "../nav/tabNavigation";
+
 import { Footer } from "../shared/footer";
 export const Dashboard = () => {
   return (
     <AppProvider>
       <s-stack direction="block" gap="base">
-        <TabNavigation />
+       
         <AppEmbedStatus />
         <s-stack
           direction="inline"

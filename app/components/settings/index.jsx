@@ -1,11 +1,11 @@
-import TabNavigation from "../nav/tabNavigation";
+
 import { GeneralSettings } from "./generalSettings";
 import { FeaturesSettings } from "./featuresSettings";
 import { NotificationsSettings } from "./notificationsSettings";
 import { ChangeLogs } from "./changeLogs";
 import { useState } from "react";
 import { SideTabs } from "./sideTabs";
-import { Footer } from "../shared/footer";
+
 
 export default function Settings() {
   const [selected, setSelected] = useState("General");
@@ -14,7 +14,7 @@ export default function Settings() {
     <s-page title="Settings page">
       <s-stack gap="base">
         <s-box>
-          <TabNavigation />
+         
         </s-box>
         <s-box>
           <s-query-container>

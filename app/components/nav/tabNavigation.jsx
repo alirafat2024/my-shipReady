@@ -14,14 +14,21 @@ const TabNavigation = () => {
     <div
       style={{
         backgroundColor: "#fff",
-        padding: "5px",
-        display: "flex",
+         paddingBlock:"5px",
+        display: "inline-block",
         justifyContent: "start",
-        width:"100%",
+        marginBottom:"20px",
+       width:"100%"
+        
       }}
     >
-      <s-stack direction="inline" gap="base">
-          {NavTabs.map((navTab) => (
+     <s-page>
+       <div style={{
+        display:"inline-block",
+       
+       }}>
+         <s-stack  direction="inline" gap="base">
+              {NavTabs.map((navTab) => (
         <s-box key={navTab.label} direction="inline">
           <s-clickable
             borderRadius="base"
@@ -40,7 +47,10 @@ const TabNavigation = () => {
           </s-clickable>
         </s-box>
       ))}
-      </s-stack>
+         </s-stack>
+      
+      </div>
+     </s-page>
       
     </div>
     

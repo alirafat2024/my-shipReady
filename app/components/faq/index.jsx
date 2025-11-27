@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SideNavigation from "../nav/sideNavigation";
-import TabNavigation from "../nav/tabNavigation";
+
 import { Footer } from "../shared/footer";
 export const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState([]);
