@@ -1,6 +1,5 @@
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { Dashboard } from "../components/dashboard/index";
-
 import { EventModel } from "../models/event.model";
 
 export const loader = async () => {
@@ -17,7 +16,11 @@ export const loader = async () => {
   const returningCustomerRates = await EventModel.list("", {
     name: "returningCustomerRates",
   });
-console.log("Customers Data: ", customers); // Log customers data
+
+
+ 
+
+  console.log("Customers Data: ", customers); // Log customers data
   return {
     sales,
     orders,
@@ -30,6 +33,18 @@ console.log("Customers Data: ", customers); // Log customers data
     returningCustomerRates,
   };
 };
+
+
+
+export const action = async ({ request }) => {
+  const { plan } = Object.fromEntries(await request.formData());
+
+  if (plan) {
+    console.log("........................................................")
+    console.log(plan)
+}
+
+}
 
 export default function Index() {
   return <Dashboard />;

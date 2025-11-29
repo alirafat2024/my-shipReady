@@ -26,6 +26,11 @@ export const Dashboard = () => {
         <Analytics />
         <Footer />
       </s-stack>
+      <s-stack>
+        <s-button>
+          payment
+        </s-button>
+      </s-stack>
     </AppProvider>
   );
 };

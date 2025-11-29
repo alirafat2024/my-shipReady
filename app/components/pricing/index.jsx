@@ -1,11 +1,13 @@
-
 import { Footer } from "../shared/footer";
 import SideNavigation from "../nav/sideNavigation";
+import { useLoaderData, useFetcher } from "react-router";
 export default function Pricing() {
+ const { activePlanName } = useLoaderData();
+  let fetcher = useFetcher();
+ const currentPlan = activePlanName;
   return (
     <s-page heading=" PowerX - Functions">
       <s-stack direction="block" padding="base" gap="base">
-        
         <s-stack>
           <s-box>
             <SideNavigation pageTitle={"Pricing page"} />
@@ -42,7 +44,11 @@ export default function Pricing() {
           alignItems="start"
         >
           <s-section>
-            <s-stack justifyContent="space-between" direction="inline">
+            <s-stack
+              justifyContent="space-between"
+              direction="inline"
+              background={currentPlan === "Free" ? "subdued" : "transparent"}
+            >
               <s-heading>Free</s-heading>
               <s-badge tone="info">current plan</s-badge>
             </s-stack>
@@ -73,10 +79,19 @@ export default function Pricing() {
               <s-text>10 campaigns per function</s-text>
             </s-stack>
             <s-stack paddingBlockStart="base" paddingInline="large-500">
-              <s-button variant="primary">start 3-days trila</s-button>
+              <s-button
+                onClick={() =>
+                  fetcher.submit({ plan: "Free" }, { method: "post" })
+                }
+                variant="primary"
+              >
+                start 3-days trila
+              </s-button>
             </s-stack>
           </s-section>
-          <s-section>
+          <s-section
+            background={currentPlan === "Free" ? "subdued" : "transparent"}
+          >
             <s-heading>Pro</s-heading>
             <s-paragraph>
               <s-text type="strong">$99</s-text>/ month
@@ -113,10 +128,17 @@ export default function Pricing() {
               paddingBlockStart="base"
               paddingInline="large-500"
             >
-              <s-button variant="primary">start 3-days trila</s-button>
+              <s-button variant="primary"
+                onClick={() =>
+                  fetcher.submit({ plan: "Pro" }, { method: "post" })
+                }
+              
+              >start 3-days trila</s-button>
             </s-stack>
           </s-section>
-          <s-section>
+          <s-section
+            background={currentPlan === "Free" ? "subdued" : "transparent"}
+          >
             <s-heading>Premium</s-heading>
             <s-paragraph>
               <s-text type="strong">Free</s-text>/ month
@@ -157,7 +179,11 @@ export default function Pricing() {
               <s-text>Basic support</s-text>
             </s-stack>
             <s-stack paddingBlockStart="base" paddingInline="large-500">
-              <s-button variant="primary">start 3-days trila</s-button>
+              <s-button variant="primary"
+               onClick={() =>
+                  fetcher.submit({ plan: "Premium" }, { method: "post" })
+                }
+              >start 3-days trila</s-button>
             </s-stack>
           </s-section>
         </s-grid>
