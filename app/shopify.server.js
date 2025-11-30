@@ -9,9 +9,9 @@ import prisma from "./db.server";
 
 import { BillingInterval } from "@shopify/shopify-app-react-router/server";
 
-export const Free_PLAN = 'Free';
-export const Pro_PLAN = 'Pro';
-export const Premium_PLAN = 'Premium';
+
+export const PRO_PLAN = 'PRO';
+export const PREMIUM_PLAN = 'PREMIUM';
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,
@@ -27,32 +27,26 @@ const shopify = shopifyApp({
     : {}),
 
   billing: {
-    [Free_PLAN]: {
+
+     [PRO_PLAN]: {
       lineItems: [
         {
-          amount: 2,
+          amount: 19,
           currencyCode: "USD",
           interval: BillingInterval.Every30Days,
         },
       ],
+      trialDays:7,
     },
-     [Pro_PLAN]: {
+    [PREMIUM_PLAN]: {
       lineItems: [
         {
-          amount: 5,
-          currencyCode: "USD",
-          interval: BillingInterval.Every30Days,
-        },
-      ],
-    },
-    [Premium_PLAN]: {
-      lineItems: [
-        {
-          amount: 19.99,
+          amount: 49,
           currencyCode: "USD",
           interval: BillingInterval.Annual,
         },
       ],
+      trialDays:7,
     },
   },
 });

@@ -1,56 +1,73 @@
 import Pricing from "../components/pricing/index.jsx";
-import { authenticate, Free_PLAN, Pro_PLAN, Premium_PLAN } from "../shopify.server";
-import { redirect } from "react-router";
+import { authenticate, PRO_PLAN, PREMIUM_PLAN } from "../shopify.server";
+export const headers = (headers) => {
+  const mergedHeaders = new Headers();
+  for (const temp of Object.values(headers)) {
+    if (!temp) {
+      break;
+    }
+    temp.forEach((value, key) => {
+      mergedHeaders.set(key, value);
+    });
+  }
+  console.log("-------------------------------------");
+  console.log(mergedHeaders);
+  console.log("-------------------------------------");
+  return mergedHeaders;
+};
 
 export const loader = async ({ request }) => {
   const { billing } = await authenticate.admin(request);
 
-  const active = await billing.check({
-    plans: [Free_PLAN, Pro_PLAN, Premium_PLAN],
+   const { hasActivePayment, appSubscriptions }  = await billing.check({
+    plans: [ PRO_PLAN, PREMIUM_PLAN],
     isTest: true,
   });
-    const activePlan =
-    active.oneTimePurchases?.[0] ||
-    active.appSubscriptions?.[0] ||
-    null;
-
-
-  let activePlanName = null;
-  if (active.hasActivePayment) {
-    if (activePlan?.name.includes("Free")) activePlanName = "Free";
-    else if (activePlan?.name.includes("Pro")) activePlanName = "Pro";
-    else if (activePlan?.name.includes("Premium")) activePlanName = "Premium";
-  }
-
+  
   return {
-    activePlanName, 
+    hasActivePayment,
+    currentPlan:appSubscriptions.length>0?appSubscriptions[0].name:null,
+    appSubscriptions,
+    subscriptionId:appSubscriptions.length>0?appSubscriptions[0].id:null,
   };
 };
 
-
 export const action = async ({ request }) => {
-  const { plan } = Object.fromEntries(await request.formData());
-  const { billing } = await authenticate.admin(request);
+  const formData=await request.formData();
 
-  
-  let selectedPlan = null;
+  const selectedPlan = formData.get("plan");
+  const subscriptionId=formData.get("subscriptionId");
 
-  if (plan === Free_PLAN.plan) selectedPlan = Free_PLAN;
-  if (plan === Pro_PLAN.plan) selectedPlan = Pro_PLAN;
-  if (plan === Premium_PLAN.plan) selectedPlan = Premium_PLAN;
-
- 
-  if (!selectedPlan) return null;
-
-  const { confirmationUrl } = await billing.request({
-    plan: selectedPlan,      
+  if(subscriptionId){
+    const cancelledSubscription = await billing.cancel({
+    subscriptionId: subscriptionId,
     isTest: true,
-    returnUrl: "https://admin.shopify.com/store/my-store1/apps/my-shipready/pricing",
-  });
+    prorate: true,
+   });
+   return {cancelledSubscription};
+  }
 
-  return redirect(confirmationUrl);
+  console.log(selectedPlan)
+  const { billing,session} = await authenticate.admin(request);
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  console.log(session)
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+ let planKey;
+ if(selectedPlan=="PRO") planKey=PRO_PLAN.toUpperCase();
+  if(selectedPlan=="PREMIUM")planKey=PREMIUM_PLAN.toUpperCase();
+ 
+   const billingCheck = await billing.require({
+  plans: [planKey],
+  isTest: true,
+  onFailure: async () => billing.request({ 
+    plan: planKey,
+    returnUrl: `https://admin.shopify.com/store/${session.shop.split(".")[0]}/apps/my-shipready/app/pricing`,
+  }),
+});
+
+    
+  return {billingCheck}
 };
-
 
 export default function Pricings() {
   return <Pricing />;
