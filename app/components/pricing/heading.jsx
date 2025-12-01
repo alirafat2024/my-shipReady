@@ -1,11 +1,12 @@
 import SideNavigation from "../nav/sideNavigation";
-
+import { useLoaderData } from "react-router";
 export const Heading=()=>{
-  
+  const {currentPlan }=useLoaderData();
 
   return(
     <s-page>
      <s-stack direction="block" padding="base" gap="base">
+      
         <s-stack>
           <s-box>
             <SideNavigation pageTitle={"Pricing page"} />
@@ -19,7 +20,7 @@ export const Heading=()=>{
           >
             <s-box maxInlineSize="500px">
               <s-paragraph>
-                You are currently on the Free plan and have limited access to
+                You are currently on the {currentPlan||"FREE"} plan and have limited access to
                 all the features. Please read the <s-link>FAQ </s-link> page for
                 more information.
               </s-paragraph>

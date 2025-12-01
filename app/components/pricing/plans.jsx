@@ -1,17 +1,16 @@
 import { useLoaderData, useFetcher } from "react-router";
 import { useState, useEffect } from "react";
-// import {CancelPlanModa} from  "./cancelPlanModal"
+import { CancelPlanModal } from "./cancelPlanModal";
 
 export const Plans = () => {
-  const { currentPlan ,appSubscriptions} = useLoaderData();
+  const { currentPlan, subscriptionId } = useLoaderData();
   const fetcher = useFetcher();
-  const [selectedPlan, setSelectedPlan] = useState(currentPlan || "Free");
- 
+  const [selectedPlan, setSelectedPlan] = useState(currentPlan || "FREE");
 
   const handlePlanSelect = (plan) => {
     setSelectedPlan(plan.toUpperCase());
 
-    fetcher.submit({plan: plan.toUpperCase()}, { method: "post" });
+    fetcher.submit({ plan: plan.toUpperCase() }, { method: "post" });
   };
 
   const isPlanActive = (planName) => {
@@ -19,9 +18,8 @@ export const Plans = () => {
   };
 
   useEffect(() => {
-  
     if (!currentPlan) {
-      setSelectedPlan("Free");
+      setSelectedPlan("FREE");
     }
   }, [currentPlan]);
   return (
@@ -36,7 +34,9 @@ export const Plans = () => {
             <s-section>
               <s-stack justifyContent="space-between" direction="inline">
                 <s-heading>Free</s-heading>
-                 {isPlanActive("Free") && <s-badge tone="info">Current plan</s-badge>}
+                {isPlanActive("FREE") && (
+                  <s-badge tone="info">Current plan</s-badge>
+                )}
               </s-stack>
               <s-paragraph>
                 <s-text type="strong">$39</s-text>/ month
@@ -61,10 +61,10 @@ export const Plans = () => {
                 <s-text>Basic support</s-text>
               </s-stack>
               <s-stack paddingBlockStart="large">
-                <s-button variant="primary"
-                disabled={isPlanActive("Free")}
-                onClick={() => handlePlanSelect("Free")}
-                
+                <s-button
+                  variant="primary"
+                  disabled={!isPlanActive("FREE")}
+                  onClick={() => handlePlanSelect("FREE")}
                 >
                   upgrade to unlock all features
                 </s-button>
@@ -73,11 +73,13 @@ export const Plans = () => {
           </s-grid-item>
           <s-grid-item>
             <s-section
-            // background={currentPlan === "Free" ? "subdued" : "transparent"}
+        
             >
               <s-stack justifyContent="space-between" direction="inline">
                 <s-heading>Pro</s-heading>
-                {isPlanActive("PRO") && <s-badge tone="info">Current plan</s-badge>}
+                {isPlanActive("PRO") && (
+                  <s-badge tone="info">Current plan</s-badge>
+                )}
               </s-stack>
               <s-paragraph>
                 <s-text type="strong">$99</s-text>/ month
@@ -110,15 +112,17 @@ export const Plans = () => {
                 paddingBlockStart="base"
                 paddingInline="large-500"
               >
-                
-                <s-button
-                  variant="primary"
-                 disabled={isPlanActive("PRO")}
-                  onClick={() => handlePlanSelect("PRO")}
-                >
-                  start 3-days trila
-                </s-button>
-                
+                {isPlanActive("PRO") && subscriptionId ? (
+                  <CancelPlanModal subscriptionId={subscriptionId} />
+                ) : (
+                  <s-button
+                    variant="primary"
+                    disabled={isPlanActive("PRO")}
+                    onClick={() => handlePlanSelect("PRO")}
+                  >
+                    start 3-days trila
+                  </s-button>
+                )}
               </s-stack>
             </s-section>
           </s-grid-item>
@@ -126,7 +130,9 @@ export const Plans = () => {
             <s-section>
               <s-stack justifyContent="space-between" direction="inline">
                 <s-heading>Premium</s-heading>
-              {isPlanActive("PREMIUM") && <s-badge tone="info">Current plan</s-badge>}
+                {isPlanActive("PREMIUM") && (
+                  <s-badge tone="info">Current plan</s-badge>
+                )}
               </s-stack>
               <s-paragraph>
                 <s-text type="strong">Free</s-text>/ month
@@ -163,11 +169,17 @@ export const Plans = () => {
                 <s-text>Custom analytics</s-text>
               </s-stack>
               <s-stack paddingBlockStart="base" paddingInline="large-500">
-                <s-button variant="primary"
-                disabled={isPlanActive("PREMIUM")}
-                  onClick={() => handlePlanSelect("PREMIUM")}
-                >start 3-days trila</s-button>
-                 
+                {isPlanActive("PREMIUM") && subscriptionId ? (
+                  <CancelPlanModal subscriptionId={subscriptionId} />
+                ) : (
+                  <s-button
+                    variant="primary"
+                    disabled={isPlanActive("PREMIUM")}
+                    onClick={() => handlePlanSelect("PREMIUM")}
+                  >
+                    start 3-days trila
+                  </s-button>
+                )}
               </s-stack>
             </s-section>
           </s-grid-item>
