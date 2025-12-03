@@ -1,5 +1,30 @@
 import { Footer } from "../shared/footer";
-export function FeaturesSettings({ selectedTab }) {
+import { AddFeatureModal } from "./addFeatureModal";
+
+import  {DeleteFeatureModal} from "./deleteFeatureModal"
+
+export function FeaturesSettings({ selectedTab, features }) {
+  const hasFeatures = features && features.fields && features.fields.length > 0;
+  const featureId=features.id;
+  console.log("...................................")
+  console.log(featureId)
+  console.log("...................................")
+  
+
+  const getFeatureValues = (key) => {
+    return features.fields
+      .filter((field) => field.key === key)
+      .map((field) => field.value); 
+  };
+
+  const featureNames = getFeatureValues("featureName");
+  const featureDetails = getFeatureValues("featureDetails");
+
+    const deleteFeature = (index) => {
+    const updatedFeatureList = [...featureList]; 
+    updatedFeatureList.splice(index, 1); 
+    setFeatureList(updatedFeatureList); 
+  };
   return selectedTab !== "Features" ? null : (
     <s-page>
       <s-stack gap="base">
@@ -22,46 +47,62 @@ export function FeaturesSettings({ selectedTab }) {
               </s-unordered-list>
             </s-stack>
           </s-section>
-
-          <s-section accessibilityLabel="Empty state section">
-            <s-grid gap="base" justifyItems="center" paddingBlock="large-400">
-              <s-box maxInlineSize="300px" maxBlockSize="300px">
-                {/* aspectRatio should match the actual image dimensions (width/height) */}
-                <s-image
-                  aspectRatio="1/1"
-                  src="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
-                  alt="A stylized graphic of four characters, each holding a puzzle piece"
-                />
-              </s-box>
-              <s-grid justifyItems="center" gap="base">
-                <s-stack alignItems="center" gap="base">
-                  <s-heading>Add New Feature</s-heading>
-                  <s-paragraph>No feature available yet!</s-paragraph>
-                </s-stack>
-
-                <s-box>
-                  <s-button variant="primary" commandFor="modal">
-                    New Feature
-                    <s-modal id="modal" heading="Add Features">
-                      <s-stack gap="base">
-                        <s-section>
-                          <s-stack gap="base">
-                            <s-text-field label="Feature Name" name="appName" />
-                            <s-text-field
-                              label="Feature Details"
-                              name="appVersion"
-                            />
-                          </s-stack>
-                        </s-section>
-
+          {hasFeatures ? (
+            <s-table>
+              <s-table-header-row>
+                <s-table-header>#</s-table-header>
+                <s-table-header>Feature Name</s-table-header>
+                <s-table-header>Feature Details</s-table-header>
+              </s-table-header-row>
+              <s-table-body>
+                {featureNames.map((name, index) => {
+                  const details = featureDetails[index]; // Get corresponding featureDetails
+                  return (
+                    <s-table-row key={index}>
+                      <s-table-cell>{index + 1}</s-table-cell>
+                      <s-table-cell>{name}</s-table-cell>
+                      <s-table-cell>
+                        {details }
+                      </s-table-cell>
+                      <s-table-cell>
                        
+                      <s-stack direction="inline" gap="small-300">
+                        <DeleteFeatureModal featureId={featureId} />
+                        <s-button >
+                          <s-icon type="edit" />
+                        </s-button>
                       </s-stack>
-                    </s-modal>
-                  </s-button>
+                       
+                      </s-table-cell>
+                    </s-table-row>
+                  );
+                })}
+              </s-table-body>
+            </s-table>
+          ) : (
+            <s-section accessibilityLabel="Empty state section">
+              <s-grid gap="base" justifyItems="center" paddingBlock="large-400">
+                <s-box maxInlineSize="300px" maxBlockSize="300px">
+                  {/* aspectRatio should match the actual image dimensions (width/height) */}
+                  <s-image
+                    aspectRatio="1/1"
+                    src="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
+                    alt="A stylized graphic of four characters, each holding a puzzle piece"
+                  />
                 </s-box>
+                <s-grid justifyItems="center" gap="base">
+                  <s-stack alignItems="center" gap="base">
+                    <s-heading>Add New Feature</s-heading>
+                    <s-paragraph>No feature available yet!</s-paragraph>
+                  </s-stack>
+
+                  <s-box>
+                    <AddFeatureModal featureId={featureId} />
+                  </s-box>
+                </s-grid>
               </s-grid>
-            </s-grid>
-          </s-section>
+            </s-section>
+          )}
         </s-stack>
         <Footer />
       </s-stack>

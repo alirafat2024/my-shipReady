@@ -5,10 +5,12 @@ import { NotificationsSettings } from "./notificationsSettings";
 import { ChangeLogs } from "./changeLogs";
 import { useState } from "react";
 import { SideTabs } from "./sideTabs";
+import { useLoaderData } from "react-router";
 
 
 export default function Settings() {
   const [selected, setSelected] = useState("General");
+  const features = useLoaderData()
 
   return (
     <s-page title="Settings page">
@@ -30,7 +32,7 @@ export default function Settings() {
 
               <s-box>
                 <GeneralSettings selectedTab={selected} />
-                <FeaturesSettings selectedTab={selected} />
+                <FeaturesSettings selectedTab={selected} features={features}/>
                 <NotificationsSettings selectedTab={selected} />
                 <ChangeLogs selectedTab={selected} />
                  
