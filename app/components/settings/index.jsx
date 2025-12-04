@@ -15,28 +15,30 @@ export default function Settings() {
   return (
     <s-page title="Settings page">
       <s-stack gap="base">
-        <s-box>
-         
-        </s-box>
+       
         <s-box>
           <s-query-container>
             <s-grid
-              gridTemplateColumns="@container (inline-size > 500px) 1fr 1fr, 1fr"
+              gridTemplateColumns="@container (inline-size > 500px) 1fr 1fr 1fr, 1fr"
               gap="base"
               alignItems="start"
             >
-              <s-section>
+             <s-grid-item gridColumn="span 1">
+               <s-section>
                 <SideTabs setSelectedTab={setSelected} selectedTab={selected} />
                 
               </s-section>
+             </s-grid-item>
 
-              <s-box>
+              <s-grid-item gridColumn="span 2">
+                 <s-box>
                 <GeneralSettings selectedTab={selected} />
                 <FeaturesSettings selectedTab={selected} features={features}/>
                 <NotificationsSettings selectedTab={selected} />
                 <ChangeLogs selectedTab={selected} />
                  
               </s-box>
+              </s-grid-item>
              
             </s-grid>
             

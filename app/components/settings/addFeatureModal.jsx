@@ -1,55 +1,70 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFetcher } from "react-router";
 
-export const AddFeatureModal = ({featureId}) => {
-  const [featureName, setFeatureName] = useState("");
-  const [featureDetails, setFeatureDetails] = useState("");
+export const AddFeatureModal = ({ featureId, featureName, featureDetails }) => {
+  const [name, setName] = useState(featureName || "");
+  const [details, setDetails] = useState(featureDetails || "");
   const fetcher = useFetcher();
+  useEffect(() => {
+    setName(featureName || "");
+    setDetails(featureDetails || "");
+  }, [featureName, featureDetails]);
 
   const handleSubmit = () => {
     fetcher.submit(
-      { 
-        featureName: featureName,
-        featureDetails: featureDetails,
-        type: "create",
+      {
+        featureName: name,
+        featureDetails: details,
+        type: featureId ? "update" : "create",
+        metaobjectId: featureId,
       },
-      
+
       { method: "POST" },
     );
   };
   return (
     <s-stack gap="small-300">
-      <s-button variant="primary" commandFor="modal" command="--show">
-        New Feature
+      <s-button
+        variant={featureId ? "secondary" : "primary"}
+        commandFor="editModal"
+        command="--show"
+      >
+        {featureId ? <s-icon type="edit" /> : "New Feature"}
       </s-button>
-      <s-modal id="modal" heading="Add Features">
+      <s-modal id="editModal" heading="Add Features">
         <s-stack gap="small-300">
           <s-text-field
             label="Feature Name"
             name="Feature"
-            onChange={(e)=>{
-              setFeatureName(e.target.value)
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
             }}
           />
           <s-text-field
             label="Feature Details"
             name="featureDetails"
-            onChange={(e)=>{
-              setFeatureDetails(e.target.value)
+            value={details}
+            onChange={(e) => {
+              setDetails(e.target.value);
             }}
           />
         </s-stack>
-        <s-button slot="secondary-actions" commandFor="modal" command="--hide">
+        <s-button
+          slot="secondary-actions"
+          commandFor="editModal"
+          command="--hide"
+        >
           Close
         </s-button>
         <s-button
-          onClick={ handleSubmit}
+          onClick={handleSubmit}
           slot="primary-action"
           variant="primary"
-          commandFor="modal"
+          commandFor="editModal"
           command="--hide"
         >
-          Save
+          {featureId ? "save new feature" : "Save"}
         </s-button>
       </s-modal>
     </s-stack>

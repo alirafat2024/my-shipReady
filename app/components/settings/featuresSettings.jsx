@@ -1,30 +1,26 @@
 import { Footer } from "../shared/footer";
 import { AddFeatureModal } from "./addFeatureModal";
 
-import  {DeleteFeatureModal} from "./deleteFeatureModal"
+import { DeleteFeatureModal } from "./deleteFeatureModal";
 
 export function FeaturesSettings({ selectedTab, features }) {
   const hasFeatures = features && features.fields && features.fields.length > 0;
-  const featureId=features.id;
-  console.log("...................................")
-  console.log(featureId)
-  console.log("...................................")
-  
+  const featureId = features ? features.id : null;
+  console.log("...................................");
+  console.log(featureId);
+  console.log("...................................");
 
   const getFeatureValues = (key) => {
-    return features.fields
-      .filter((field) => field.key === key)
-      .map((field) => field.value); 
+    return features && features.fields
+      ? features.fields
+          .filter((field) => field.key === key)
+          .map((field) => field.value)
+      : [];
   };
 
   const featureNames = getFeatureValues("featureName");
   const featureDetails = getFeatureValues("featureDetails");
 
-    const deleteFeature = (index) => {
-    const updatedFeatureList = [...featureList]; 
-    updatedFeatureList.splice(index, 1); 
-    setFeatureList(updatedFeatureList); 
-  };
   return selectedTab !== "Features" ? null : (
     <s-page>
       <s-stack gap="base">
@@ -53,26 +49,25 @@ export function FeaturesSettings({ selectedTab, features }) {
                 <s-table-header>#</s-table-header>
                 <s-table-header>Feature Name</s-table-header>
                 <s-table-header>Feature Details</s-table-header>
+                <s-table-header></s-table-header>
               </s-table-header-row>
               <s-table-body>
                 {featureNames.map((name, index) => {
-                  const details = featureDetails[index]; // Get corresponding featureDetails
+                  const details = featureDetails[index]; 
                   return (
                     <s-table-row key={index}>
                       <s-table-cell>{index + 1}</s-table-cell>
                       <s-table-cell>{name}</s-table-cell>
+                      <s-table-cell>{details}</s-table-cell>
                       <s-table-cell>
-                        {details }
-                      </s-table-cell>
-                      <s-table-cell>
-                       
-                      <s-stack direction="inline" gap="small-300">
-                        <DeleteFeatureModal featureId={featureId} />
-                        <s-button >
-                          <s-icon type="edit" />
-                        </s-button>
-                      </s-stack>
-                       
+                        <s-stack direction="inline" gap="small-300" justifyContent="end" alignItems="center">
+                         <s-box><DeleteFeatureModal featureId={featureId} /></s-box>
+                          <s-box><AddFeatureModal 
+                          featureId={featureId}
+                           featureName={name}
+                          featureDetails={details}
+                          /></s-box>
+                        </s-stack>
                       </s-table-cell>
                     </s-table-row>
                   );

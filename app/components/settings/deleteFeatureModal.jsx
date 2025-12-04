@@ -5,18 +5,15 @@ export const DeleteFeatureModal = ({ featureId }) => {
 
   return (
     <>
-      <s-button variant="primary" tone="critical" commandFor="modal">
-        <s-button tone="critical">
-          <s-icon type="delete" />
-        </s-button>
+      <s-button variant="secondary" commandFor="modal">
+        <s-icon type="delete" tone="critical" />
       </s-button>
       <s-modal id="modal" heading="Are you sure">
-        <s-s-paragraph>Do you want to remove the feature?</s-s-paragraph>
+        <s-paragraph>Do you want to remove the feature?</s-paragraph>
 
-        <s-button slot="secondary-action" commandFor="modal" command="--hide">
+        <s-button slot="secondary-actions" commandFor="modal" command="--hide">
           No
         </s-button>
-
         <s-button
           slot="primary-action"
           variant="primary"
@@ -24,15 +21,12 @@ export const DeleteFeatureModal = ({ featureId }) => {
           commandFor="modal"
           command="--hide"
           onClick={() => {
-            // Check if the featureId is a valid gid (for Shopify, it's usually a global ID)
-            const idToDelete = featureId.split('/').pop(); // Extract just the numeric ID
-
             fetcher.submit(
               {
-                metaobjectId: idToDelete, 
-                type: "delete"
+                metaobjectId: featureId,
+                type: "delete",
               },
-              { method: "POST" }
+              { method: "POST" },
             );
           }}
         >

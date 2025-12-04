@@ -20,16 +20,16 @@ export const loader = async ({ request }) => {
           }
         }
       }
-    }`
+    }`,
   );
   const getData = await getResponse.json();
 
   // If metaobject exists, return it
   const meta = getData.data.metaobjects.edges[0]?.node;
   if (meta) {
-    console.log("_______________________________________________")
-    console.log(meta)
-    console.log("_______________________________________________")
+    console.log("_______________________________________________");
+    console.log(meta);
+    console.log("_______________________________________________");
     return meta;
   }
 
@@ -48,19 +48,20 @@ export const loader = async ({ request }) => {
         metaobjectDefinition { name type }
         userErrors { field message code }
       }
-    }`
+    }`,
   );
   const defData = await defResponse.json();
   if (defData.data.metaobjectDefinitionCreate.userErrors.length > 0) {
-    const alreadyExists = defData.data.metaobjectDefinitionCreate.userErrors.some(
-      (e) => e.code === "ALREADY_EXISTS"
-    );
+    const alreadyExists =
+      defData.data.metaobjectDefinitionCreate.userErrors.some(
+        (e) => e.code === "ALREADY_EXISTS",
+      );
     if (!alreadyExists) {
       return { errors: defData.data.metaobjectDefinitionCreate.userErrors };
     }
   }
 
-  return {meta};
+  return { meta };
 };
 
 export const action = async ({ request }) => {
@@ -71,13 +72,13 @@ export const action = async ({ request }) => {
   const featureDetails = formData.get("featureDetails");
   const actionType = formData.get("type"); // Should be "create", "update", or "delete"
   const metaobjectId = formData.get("metaobjectId"); // Needed for update/delete
-   console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-   console.log(featureName)
-   console.log(featureDetails)
-   console.log(actionType)
-   console.log(metaobjectId)
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+  console.log(featureName);
+  console.log(featureDetails);
+  console.log(actionType);
+  console.log(metaobjectId);
 
-   console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   // CREATE
   if (actionType === "create") {
     const createResponse = await admin.graphql(
@@ -97,7 +98,7 @@ export const action = async ({ request }) => {
           }
           userErrors { field message code }
         }
-      }`
+      }`,
     );
     const createData = await createResponse.json();
     if (createData.data.metaobjectCreate.userErrors.length > 0) {
@@ -124,7 +125,7 @@ export const action = async ({ request }) => {
           }
           userErrors { field message code }
         }
-      }`
+      }`,
     );
     const updateData = await updateResponse.json();
     if (updateData.data.metaobjectUpdate.userErrors.length > 0) {
@@ -138,11 +139,11 @@ export const action = async ({ request }) => {
     const deleteResponse = await admin.graphql(
       `#graphql
       mutation {
-        metaobjectDelete(id: "${metaobjectId}") {
-          deletedMetaobjectId
-          userErrors { field message code }
-        }
-      }`
+       metaobjectDelete(id: "${metaobjectId}") {
+             deletedId
+           userErrors { field message code }
+          }
+      }`,
     );
     const deleteData = await deleteResponse.json();
     if (deleteData.data.metaobjectDelete.userErrors.length > 0) {
