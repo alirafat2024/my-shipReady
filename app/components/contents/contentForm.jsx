@@ -1,7 +1,8 @@
 import SideNavigation from "../nav/sideNavigation";
 import { useState } from "react";
 import { Form } from "react-router";
-import { useFetcher } from "react-router";
+import { useFetcher} from "react-router";
+
 export const ContentForm = () => {
   const fetcher = useFetcher();
   const [products, setProducts] = useState([]);
@@ -11,11 +12,20 @@ export const ContentForm = () => {
   const [status, setStatus] = useState("draft");
   const [publishAt, setPublishAt] = useState(Date.now());
 
+    const resetForm = () => {
+    setTitle("");
+    setDescription("");
+    setColor("#000000");
+    setStatus("draft");
+    setPublishAt(Date.now());
+    setProducts([]); 
+  };
+
   const handleSave = () => {
     fetcher.submit(
       {
         title: title,
-        products: products,
+        products: JSON.stringify(products),
         description: description,
         color: color,
         status: status,
@@ -23,8 +33,10 @@ export const ContentForm = () => {
         type: "create",
       },
 
-      { method: "POST" },
-    );
+      { method: "POST" }).then(() => {
+      
+      resetForm();
+    });
   };
   const handleProduct = async () => {
     const selected = await shopify.resourcePicker({
@@ -59,6 +71,7 @@ export const ContentForm = () => {
                     <s-text-field
                       name="title"
                       label="Title"
+                       value={title} 
                       onChange={(e) => {
                         setTitle(e.target.value);
                       }}
@@ -67,6 +80,7 @@ export const ContentForm = () => {
                     <s-text-area
                       label="Description"
                       rows={5}
+                      value={description} 
                       onChange={(e) => {
                         setDescription(e.target.value);
                       }}
@@ -140,7 +154,7 @@ export const ContentForm = () => {
 
                     <s-date-field
                       type="range"
-                      value="2025-05-28--2025-05-31"
+                      value={publishAt}
                       label="Publish at"
                       onChange={(e) => {
                         setPublishAt(e.target.value);
@@ -150,7 +164,7 @@ export const ContentForm = () => {
 
                     <s-color-field
                       placeholder="Select a color"
-                      value="#FF0000"
+                       value={color}
                       label="Select color #000000"
                       onChange={(e) => {
                         setColor(e.target.value);
@@ -164,6 +178,7 @@ export const ContentForm = () => {
           </s-query-container>
         </Form>
       </s-stack>
+      
     </s-page>
   );
 };

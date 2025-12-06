@@ -1,4 +1,6 @@
 import Settings from "../components/settings/index.jsx";
+
+
 import { authenticate } from "../shopify.server.js";
 
 export const loader = async ({ request }) => {
