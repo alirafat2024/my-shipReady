@@ -2,8 +2,9 @@ import SideNavigation from "../nav/sideNavigation";
 import { useState } from "react";
 import { Form } from "react-router";
 import { useFetcher} from "react-router";
-
+import { useNavigate } from "react-router-dom";
 export const ContentForm = () => {
+  const navigate = useNavigate();  
   const fetcher = useFetcher();
   const [products, setProducts] = useState([]);
   const [title, setTitle] = useState("");
@@ -36,6 +37,7 @@ export const ContentForm = () => {
       { method: "POST" }).then(() => {
       
       resetForm();
+      navigate("/app/contents");
     });
   };
   const handleProduct = async () => {
@@ -87,7 +89,7 @@ export const ContentForm = () => {
                       name="description"
                     />
                     <s-box border="base" padding="base" borderRadius="base">
-                      <s-headding>Select Content Products</s-headding>
+                      <s-heading>Select Content Products</s-heading>
                       <s-text>
                         Choose the products that will be part of this campaign
                       </s-text>

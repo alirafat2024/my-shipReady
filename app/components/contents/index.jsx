@@ -46,7 +46,7 @@ export default function Contents({ contents }) {
               <s-table-header>Title</s-table-header>
               <s-table-header>Status</s-table-header>
               <s-table-header>Created At</s-table-header>
-              <s-table-header>Action</s-table-header>
+              <s-table-header></s-table-header>
             </s-table-header-row>
             <s-table-body>
               {contents.map((content, index) => {
@@ -67,13 +67,8 @@ export default function Contents({ contents }) {
 
                     <s-table-cell>{createdAt}</s-table-cell>
                     <s-table-cell>
-                      <s-stack
-                        direction="inline"
-                        gap="small-300"
-                        justifyContent="end"
-                        alignItems="center"
-                      >
-                        <s-stack direction="inline" gap="small">
+                    
+                        <s-stack direction="inline" gap="small" justifyContent="end" alignItems="center">
                           <DeleteContentModal contentId={content.id} />
                           <EditContentModal
                             contentId={content.id}
@@ -82,7 +77,7 @@ export default function Contents({ contents }) {
                             createdAt={createdAt}
                           />
                         </s-stack>
-                      </s-stack>
+                     
                     </s-table-cell>
                   </s-table-row>
                 );

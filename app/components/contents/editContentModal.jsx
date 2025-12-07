@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useFetcher } from "react-router";
-
 export const EditContentModal = ({
   contentId,
   title: initialTitle,
@@ -14,7 +13,6 @@ export const EditContentModal = ({
   const fetcher = useFetcher();
 
   useEffect(() => {
-    // Set the initial values from the props
     setTitle(initialTitle || "");
     setStatus(initialStatus || "");
     setCreatedAt(initialCreatedAt || "");
@@ -35,11 +33,11 @@ export const EditContentModal = ({
 
   return (
     <s-stack gap="small-300">
-      <s-button variant="secondary" commandFor="editModal" command="--show">
+      <s-button variant="secondary" commandFor={contentId} command="--show">
         <s-icon type="edit" />
       </s-button>
 
-      <s-modal id="editModal" heading="Edit Content">
+      <s-modal id={contentId} heading="Edit Content">
         <s-stack direction="inline" gap="small-300">
           <s-text-field
             label="Title"
@@ -57,17 +55,19 @@ export const EditContentModal = ({
             <s-option value="published">Published</s-option>
           </s-select>
 
-          <s-date-field
-            label="Created At"
-            value={createdAt}
-            onChange={(e) => setCreatedAt(e.target.value)}
-            name="createdAt"
-          />
+            <s-date-field
+             type="range"
+              label="Created At"
+              value={createdAt}
+              onChange={(e) => setCreatedAt(e.target.value)}
+              name="createdAt"
+            />
+        
         </s-stack>
 
         <s-button
           slot="secondary-actions"
-          commandFor="editModal"
+          commandFor={contentId}
           command="--hide"
         >
           Close
@@ -77,7 +77,7 @@ export const EditContentModal = ({
           onClick={handleSubmit}
           slot="primary-action"
           variant="primary"
-          commandFor="editModal"
+          commandFor={contentId}
           command="--hide"
         >
           Save Changes

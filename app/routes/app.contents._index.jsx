@@ -33,11 +33,9 @@ export const loader = async ({ request }) => {
 export const action = async ({ request }) => {
   const { admin } = await authenticate.admin(request);
   const formData = await request.formData();
-  // Get all fields
+
   const title = formData.get("title");
-  const products = formData.get("products");
-  const description = formData.get("description");
-  const color = formData.get("color");
+
   const status = formData.get("status");
   const publishAt = formData.get("publishAt");
   const actionType = formData.get("type");
@@ -45,9 +43,6 @@ export const action = async ({ request }) => {
 
   const fieldsArr = [
     { key: "title", value: title },
-    { key: "products", value: products },
-    { key: "description", value: description },
-    { key: "color", value: color },
     { key: "status", value: status },
     { key: "publishAt", value: publishAt },
   ].filter((f) => f.value !== undefined && f.value !== null);
